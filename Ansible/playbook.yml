@@ -1,0 +1,44 @@
+---
+- name: Install default Apache Web Server
+  hosts: all
+  become: yes
+
+  vars:
+    source_file:  ./MyWebSite/index.html
+    destin_file:  /var/www/html
+    secret     :  ADJASPOJFPOAKFPODAKFPOAKSPODKAOPDKPOAKDF
+    message1: Priviet
+    message2: World
+
+  tasks:
+  - name: Install Apache Web Server
+    yum:  name=httpd  state=installed/latest
+
+  - name: Copy MyHomePage to Servers
+    copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+    notify: Restart Apache
+
+  - name: Start Web Server and mae it enable on boot
+    service: name=httpd   state=started enabled=yes
+
+  - name: Print Secret variable       // We can write debug without "name"
+    debug:
+      var: secret
+
+  - debug:
+      msg: "Sekretnoe slovo: {{ secret }}"
+
+  - set_fact: full_message="{{ message1 }} {{ message2 }}"
+
+  - debug:
+      var: full_message
+
+  - shell: uptime
+    register: results
+
+  - debug:
+      var: results.stdout
+
+  handlers:
+  - name: Restart Apache
+    service: name=httpd state=restarted

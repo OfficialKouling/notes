@@ -1,0 +1,24 @@
+First of all we must create file with our hosts, this file is written not on yaml. 
+
+
+[STAGING_SERVERS_DB]
+172.18.14.3
+172.18.14.2
+
+[PROD_SERVERS_DB]
+172.18.14.6
+linux1	ansible_host=172.18.14.24
+172.18.14.5
+
+[PROD_SERVERS_WEB:vars]
+ansible_user=ec2-user
+ansible_ssh_private_key_file=/home/.../xxx.pem
+
+[ALL_SERVERS_DB:children]
+STAGING_SERVERS_DB
+PROD_SERVERS_DB
+
+[ALL_SERVERS_DB:vars]			// better and easier be just create group_vars
+db_endpoint=xxxxxxx.yyyyyy.com:4151
+owner=kouling
+location="Here"
