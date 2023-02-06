@@ -1,0 +1,13 @@
+---
+- name: Test
+  hosts: amazon
+  become: yes
+
+  vars:
+    secret: APPASDPASPDPASDPASFPASPFPASDPASD
+
+  tasks:
+  - name: Write variable and text
+    debug:
+      var: secret
+      msg: Ulovil?

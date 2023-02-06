@@ -1,0 +1,9 @@
+jinja templates creates with extension .j2
+to generate file we use command "template"
+
+		Jinja templates change variables to text, example:
+			{{ ansible_os_host }} to "Debian"
+
+
+  template: src="xxx/index.j2" dest="xxx/index.html"
+

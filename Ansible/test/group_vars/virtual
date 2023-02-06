@@ -1,0 +1,3 @@
+ansible_user: kouling
+ansible_password: reg123
+ansible_sudo_pass: reg123
