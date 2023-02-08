@@ -1,0 +1,32 @@
+---
+- name: Loops Playbook
+  become: yes
+  hosts: virtual
+
+  tasks:
+  - name: Say Hello to all people
+    debug: msg="Hello {{ item }}"
+    with_items:
+        - "Kolya"
+        - "Vasya"
+        - "Petia"
+        - "Masha"
+        - "Ivan"
+
+
+  - name: Loop Until Example
+    shell: echo -n W >> myfile.txt && cat myfile.txt
+    register: exx
+    delay: 1
+    retries: 10
+    until: exx.stdout.find("WWWWW") == false
+
+  - debug: 
+      var: exx.stdout
+
+  - name: Install many packages
+    apt: name={{ item }} state=latest
+    loop:
+      - python3
+      - tree
+

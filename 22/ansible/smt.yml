@@ -1,0 +1,7 @@
+---
+- name: install updates, test
+  become: yes
+  hosts: virtual
+
+  tasks:
+  - include: update.yml

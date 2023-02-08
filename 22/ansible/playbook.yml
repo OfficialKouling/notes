@@ -1,0 +1,69 @@
+---
+- name: Install default Apache Web Server
+  hosts: all
+  become: yes
+
+  vars:
+    source_file:  ./MyWebSite/index.html
+    destin_file:  /var/www/html
+    secret     :  ADJASPOJFPOAKFPODAKFPOAKSPODKAOPDKPOAKDF
+    message1: Priviet
+    message2: World
+
+  tasks:
+  - name: Install Apache Web Server
+    yum:  name=httpd  state=latest
+    when: ansible_os_family == "RedHat"
+
+  - name: Install Apache Web Server
+    apt:  name=apache2  state=latest
+    when: ansible_os_family == "Debian"
+
+  - name: Copy MyHomePage to Servers RedHat
+    copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+    notify: Restart Apache RedHat
+    when: ansible_os_family == "RedHat"
+
+  - name: Copy MyHomePage to Servers Debian
+    copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+    notify: Restart Apache Debian
+    when: ansible_os_family == "Debian"
+
+  - name: Start Web Server and make it enable on boot
+    service: name=httpd   state=started enabled=yes
+    when: ansible_os_family == "RedHat"
+
+  - name: Start Web Server and make it enable on boot
+    service: name=apache2   state=started enabled=yes
+    when: ansible_os_family == "Debian"
+
+
+  - name: Print Secret variable       
+    debug:
+      var: secret
+
+  - debug:
+      msg: "Sekretnoe slovo: {{ secret }}"
+
+  - set_fact: full_message="{{ message1 }} {{ message2 }}"
+
+  - debug:
+      var: full_message
+
+  - shell: uptime
+    register: results
+
+  - debug:
+      var: results.stdout
+
+  - debug:
+      var: ansible_os_family
+
+  handlers:
+  - name: Restart Apache RedHat
+    service: name=httpd state=restarted
+    when: ansible_os_family == "RedHat"
+
+  - name: Restart Apache Debian
+    service: name=apache2 state=restarted
+    when: ansible_os_family == "Debian"

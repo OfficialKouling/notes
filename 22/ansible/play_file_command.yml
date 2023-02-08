@@ -1,0 +1,11 @@
+---
+- name: ansible command file test
+  hosts: virtual
+  become: yes
+
+  tasks:
+  - name: Creating file
+    file:
+      path: /home/kouling/app/app
+      state: directory
+      mode: 0755
