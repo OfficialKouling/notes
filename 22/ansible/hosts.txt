@@ -2,4 +2,5 @@
 linux1 ansible_host=ec2-18-156-71-7.eu-central-1.compute.amazonaws.com
 
 [virtual]
-linux2 ansible_host=192.168.56.101
+linux2 ansible_host=192.168.122.198
+linux3 ansible_host=192.168.122.200
