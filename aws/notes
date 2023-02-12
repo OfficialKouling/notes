@@ -1,0 +1,21 @@
+Amazon EC2 -- Instances, virtual "pc"
+Elastic Load Balancing -- Balance between ex. sites(if you have 2 sites and 1mln requst, 500 000 > 1 site)
+AWS Elastic Beanstalk -- Automatic up instance/site from zip archive
+Amazon CloudFront -- Service to make hash your websites(usually used for static content)
+Amazon CloudWatch -- Monitoring all your infrastructure
+Amazon S3(simple storage service) -- Something like dropbox
+	Amazon Glacier -- very cheap price, but it's not so fast, for download files you need to wait 3-5hours
+Amazon EF5 -- Share disks to servers EC2
+AWS CloudFormation -- infrastructure like code, automatic lifting infrastructure
+AWS OpsWorks -- load recipe from chef
+Amazon RDS -- database sql(posgres sql, aurora, mysql..)
+Amazon DynamoDB -- database nosql
+Amazon Redshift -- system of analyzing data(information)
+Amazon EMR -- Work with Big Data
+IAM -- users/groups/permissons.. smt like active directory
+Amazon VPC(virtual prime network) -- virtual networks
+Amazon Route 53 -- DNS server of amazon
+Amazon SES -- server of emails
+Amazon SNS -- notifications (email, messages, sms..) work with CloudWatch
+Amazon SQS -- send, store and receive messages betweeb software components at any volume, without losing messages or requiring
+

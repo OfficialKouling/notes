@@ -1,0 +1,2 @@
+docker image prunce 			// delete all images which is not working
+docker run --rem XXImageXX		// delete container when it be stopped
