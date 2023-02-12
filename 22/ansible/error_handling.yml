@@ -1,0 +1,24 @@
+---
+- name: Ansible Error Handling test
+  become: yes
+  any_errors_fatal: true
+  hosts: virtual
+
+  tasks:
+  - name: Task Number1
+    apt: name=treeeee state=latest
+    ignore_errors: yes
+
+  - name: Task Number2
+    shell: echo Hello World!!
+    register: results
+    failed_when: results.rc == 0
+      #    failed_when: "'World'in results.stdout"
+
+
+  - debug:
+      var: results
+
+
+  - name: Task Number3
+    shell: echo Priviet Mir!!!

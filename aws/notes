@@ -19,3 +19,44 @@ Amazon SES -- server of emails
 Amazon SNS -- notifications (email, messages, sms..) work with CloudWatch
 Amazon SQS -- send, store and receive messages betweeb software components at any volume, without losing messages or requiring
 
+AMI(amazon machine images) -- smt like clonezilla, used for creating images of already installed instances
+	ami built for a specific region (and can be copied across regions). faster boot.
+	You can launch EC2 instances from: A public AMI; Your own AMI; An AWS Marketplace AMI
+EBS snapshots -- copy of volumes(disks), they can go to the recycle bin(which store's copy's of disk from accenditealy removing vol.)
+EBS -- smt like network pendrive's :D
+EC2 Instance Store -- High-perfomance hardware disk, Better I/O perfomance, Good buffer/cache/scratch data/temporary content, risk of data loss if hardware fails
+EBS Volume types (6 types):
+	gp2/gp3 (SSD): General purpose SSD volume, balanced price and perfomance for a wide variety of workloads
+	io1/io2 (SSD): Highest-perfomance SSD volume for mission-critical low-latency or high-throughput workloads
+	st1 	(HDD): Low cost HDD volume designed for frequently accessed, throughput-intensive workloads
+	sc1	(HDD): Lowest cost HDD volume designed for less frequently accessed workloads
+		ONLY gp2/gp3 and io1/io2 can be user as boot volumes!!
+	gp3:
+		Baseline of 3000 IOPS and throughput of 125MiB/s
+		Can increase IOPS up to 16000 and throughput up to 1000 MiB/s independently
+	gp2:
+		Small gp2 volumes can burst IOPS to 3000
+		Size of volume and IOPS are linked, max IOPS is 16000
+		3 IOPS per GB, means at 5334 GB we are at the max IOPS
+
+	IOPS(PIOPS) SSD:
+		application need more than 16000 IOPS or for critical business applications with sustained IOPS performance, great for databases workloads(sensitive to storage perf and consistency)
+	io1/io2 (4GiB-16TiB):
+		Max PIOPS: 64000 for Nitro EC2 instances & 32000 for other
+		Can increase PIOPS independently from storage size
+		io2 have more durability and more IOPS per GiB (at the same price as io1)
+	io2 Block Express (4GiB-64TiB):
+		Sub-millisecond latency
+		Max PIOPS: 256000 with an IOPS:GiB ratio of 1000:1
+	Supports EBS Multi-attach
+
+	Hard Disk Drives (HDD)
+		Cannot be a boot volume
+		125 GiB to 16 TiB
+		Throughput Optimized HDD (st1)
+			Big Data, Data Warehouses, Log Processing
+			Max throughput 500 MiB/s - max IOPS 500
+		Cold HDD (sc1):
+			For data that is infrequently accessed
+			Scenarios where lowest cost is important
+			Max throughput 250MiB/s - max IOPS 250

@@ -1,0 +1,3 @@
+ansible-playbook xxx.yml --ask-vault-pass     			// if file is encrypted
+ansible-playbook xxx.yml --vault-password-file mypass.txt	// file mypass.txt must storage password from vault
+ansible-vault encrypt_string					// if we want encrypt string
